@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using OrderApi.Data;
 using OrderApi.Models;
 using RestSharp;
+using EasyNetQ;
+using OrderApi.Infrastructure;
 
 namespace OrderApi.Controllers
 {

@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductApi.Data;
 using ProductApi.Models;
+using EasyNetQ;
+using ProductApi.Infrastructure;
 
 namespace ProductApi.Controllers
 {
-    [Route("api/Products")]
+    [Route("api/products")]
     public class ProductsController : Controller
     {
         private readonly IRepository<Product> repository;
