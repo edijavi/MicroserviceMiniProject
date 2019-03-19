@@ -7,7 +7,7 @@ using RestSharp;
 
 namespace OrderApi.Controllers
 {
-    [Route("api/Orders")]
+    [Route("api/orders")]
     public class OrdersController : Controller
     {
         private readonly IRepository<Order> repository;
