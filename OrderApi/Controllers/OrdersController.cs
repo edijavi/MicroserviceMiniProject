@@ -12,6 +12,7 @@ namespace OrderApi.Controllers
     [Route("api/orders")]
     public class OrdersController : Controller
     {
+        
 		IRepository<Order> repository;
         IServiceGateway<Product> productServiceGateway;
         IMessagePublisher messagePublisher;

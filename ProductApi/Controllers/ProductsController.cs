@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProductApi.Data;
 using SharedModels;
-using EasyNetQ;
+using EasyNetQ; 
 using ProductApi.Infrastructure;
 
 namespace ProductApi.Controllers
