@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OrderApi.Data;
-using OrderApi.Models;
+using SharedModels;
 
 namespace OrderApi
 {
