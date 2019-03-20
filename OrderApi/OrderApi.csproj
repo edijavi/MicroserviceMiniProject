@@ -17,6 +17,6 @@
     <Compile Remove="Controllers\ValuesController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OnlineRetailer_Messaging_Partial\SharedModels\SharedModels.csproj" />
+    <ProjectReference Include="..\SharedModels\SharedModels.csproj" />
   </ItemGroup>
 </Project>
