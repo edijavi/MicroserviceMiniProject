@@ -20,6 +20,7 @@ namespace OrderApi.Infrastructure
 
             var request = new RestRequest(id.ToString(), Method.GET);
             var response = c.Execute<Product>(request);
+
             var orderedProduct = response.Data;
             return orderedProduct;
         }

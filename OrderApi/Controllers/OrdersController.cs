@@ -51,18 +51,9 @@ namespace OrderApi.Controllers
             {
                 return BadRequest();
             }
-			/*Other Way.
-            // Call ProductApi to get the product ordered
-            RestClient c = new RestClient();
-            // You may need to change the port number in the BaseUrl below
-            // before you can run the request.
-            c.BaseUrl = new Uri("https://localhost:5001/api/products/");
-            var request = new RestRequest(order.ProductId.ToString(), Method.GET);
-            var response = c.Execute<Product>(request);
-			*/
 
+            // Get the Product from Product API
 			var orderedProduct = productServiceGateway.Get(order.ProductId);
-
 
             if (order.Quantity <= orderedProduct.ItemsInStock - orderedProduct.ItemsReserved)
             {

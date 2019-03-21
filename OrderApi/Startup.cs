@@ -13,8 +13,9 @@ namespace OrderApi
 {
     public class Startup
     {
-        Uri productServiceBaseUrl = new Uri("http://productapi/api/products/");
-        string cloudAMQPConnectionString = "host=hare.rmq.cloudamqp.com;virtualHost=npaprqop;username=npaprqop;password=TnP46q2gwIcrbfebFLHTk1PGI8j3-vbA";
+        Uri productServiceBaseUrl = new Uri("http://localhost:5001/api/products/");
+        // string cloudAMQPConnectionString = "host=hare.rmq.cloudamqp.com;virtualHost=npaprqop;username=npaprqop;password=TnP46q2gwIcrbfebFLHTk1PGI8j3-vbA";
+        string localhostRabbitMQConnectionString = "host=localhost;username=admin;password=admin";
 
         public Startup(IConfiguration configuration)
         {
@@ -41,7 +42,7 @@ namespace OrderApi
 
             // Register MessagePublisher (a messaging gateway) for dependency injection
             services.AddSingleton<IMessagePublisher>(new
-                MessagePublisher(cloudAMQPConnectionString));
+                MessagePublisher(localhostRabbitMQConnectionString));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -69,7 +70,7 @@ namespace OrderApi
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

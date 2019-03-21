@@ -24,6 +24,7 @@ namespace OrderApi.Infrastructure
             { ProductId = productId, Quantity = quantity };
 
             bus.Publish(message, topic);
+            Console.WriteLine(message);
         }
     }
 }
