@@ -15,12 +15,14 @@ namespace OrderApi.Controllers
         
 		IRepository<Order> repository;
         IServiceGateway<Product> productServiceGateway;
+        IServiceGateway<Customer> customerServiceGateway;
         IMessagePublisher messagePublisher;
 
-		public OrdersController(IRepository<Order> repos, IServiceGateway<Product> gateway, IMessagePublisher publisher)
+		public OrdersController(IRepository<Order> repos, IServiceGateway<Product> productgateway, IServiceGateway<Customer> customergateway, IMessagePublisher publisher)
         {
             repository = repos;
-			productServiceGateway = gateway;
+			productServiceGateway = productgateway;
+            customerServiceGateway = customergateway;
             messagePublisher = publisher;
         }
 
@@ -47,13 +49,21 @@ namespace OrderApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Order order)
         {
+
             if (order == null)
             {
                 return BadRequest();
             }
 
             // Get the Product from Product API
-			var orderedProduct = productServiceGateway.Get(order.ProductId);
+            var orderedProduct = productServiceGateway.Get(order.ProductId);
+            // Get the Customer from Customer API
+            var customer = customerServiceGateway.Get(order.CustomerId);
+
+            if(customer == null)
+            {
+                messagePublisher.PublishCustomerExist("CustomerNotification");
+            }
 
             if (order.Quantity <= orderedProduct.ItemsInStock - orderedProduct.ItemsReserved)
             {
@@ -65,29 +75,63 @@ namespace OrderApi.Controllers
                 updateRequest.AddJsonBody(orderedProduct);
                 var updateResponse = c.Execute(updateRequest);
 				*/
-			
-				try
-					{
-						// Publish OrderStatusChangedMessage. If this operation
-						// fails, the order will not be created
-						messagePublisher.PublishOrderStatusChangedMessage(order.ProductId, 
-							order.Quantity, "orderCompleted");
 
-						// Create order.
-						order.Status = Order.OrderStatus.completed;
-						var newOrder = repository.Add(order);
-						return CreatedAtRoute("GetOrder", new { id = newOrder.Id }, newOrder);
-					}
-					catch
-					{
-						return StatusCode(500, "An error happened. Try again.");
-					}				
+                
+                if (orderedProduct.Price <= customer.CreditStanding)
+                {
+                    try
+                    {
+                        // Publish OrderStatusChangedMessage. If this operation
+                        // fails, the order will not be created
+                        messagePublisher.PublishOrderStatusChangedMessage(order.ProductId,
+                            order.Quantity, "orderCompleted");
+
+                        messagePublisher.PublishCustomerActivity(customer.Id, order.Id, "orderNotifiedCustomer");
+
+                        // Create order.
+                        order.Status = Order.OrderStatus.completed;
+                        var newOrder = repository.Add(order);
+                        return CreatedAtRoute("GetOrder", new { id = newOrder.Id }, newOrder);
+                    }
+                    catch
+                    {
+                        return StatusCode(500, "An error happened. Try again.");
+                    }
+                }
+                else
+                {
+                    return StatusCode(500, "Your money is not enough to buy this product. Sorry.");
+                }
 			}
 			else
 			{
 				// If the order could not be created, "return no content".
 				return StatusCode(500, "Not enough items in stock.");
 			}
+        }
+
+        [HttpPut("{id}", Name = "PutOrder")]
+        public IActionResult Put(int id)
+        {
+
+            try
+            {
+                var orderedProduct = repository.Get(id);
+                if (orderedProduct.Status == 0)
+                {
+                    return StatusCode(500, "The order is already cancelled");
+                }
+                // messagePublisher.PublishOrderStatusChangedMessage(orderedProduct.Product, "orderCancelled");
+                // orderedProduct.Status = Order.OrderStatus.cancelled;
+
+                repository.Edit(orderedProduct);
+                
+                return new ObjectResult(orderedProduct);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "No order matching that id");
+            }
         }
 
     }

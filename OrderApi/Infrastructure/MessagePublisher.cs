@@ -24,7 +24,20 @@ namespace OrderApi.Infrastructure
             { ProductId = productId, Quantity = quantity };
 
             bus.Publish(message, topic);
-            Console.WriteLine(message);
+        }
+
+        public void PublishCustomerActivity(int customerId, int orderId, string topic)
+        {
+            var message = "Your order has been made with Order ID: " + orderId.ToString() + "to the Costumer ID: " + customerId.ToString();
+
+            bus.Publish(message, topic);
+        }
+
+        public void PublishCustomerExist(string topic)
+        {
+            var message = "Your order has been canceled because your customer didn´t exist";
+
+            bus.Publish(message, topic);
         }
     }
 }
