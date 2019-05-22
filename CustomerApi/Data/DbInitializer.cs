@@ -21,7 +21,7 @@ namespace CustomerApi.Data
 
             List<Customer> customers = new List<Customer>
             {
-                new Customer { Name = xxx, Email = xx, Phone = 2 }
+                new Customer {}
             };
 
             context.Customers.AddRange(customers);

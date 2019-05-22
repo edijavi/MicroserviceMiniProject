@@ -15,12 +15,9 @@ namespace CustomerApi.Data
             db = context;
         }
 
-        Order IRepository<Customer>.Add(Customer entity)
-        {
-            if (entity.Date == null)
-                entity.Date = DateTime.Now;
-            
-            var newCustomer = db.Customer.Add(entity).Entity;
+        Customer IRepository<Customer>.Add(Customer entity)
+        {                       
+            var newCustomer = db.Customers.Add(entity).Entity;
             db.SaveChanges();
             return newCustomer;
         }
@@ -31,7 +28,7 @@ namespace CustomerApi.Data
             db.SaveChanges();
         }
 
-        Order IRepository<Customer>.Get(int id)
+        Customer IRepository<Customer>.Get(int id)
         {
             return db.Customers.FirstOrDefault(o => o.Id == id);
         }

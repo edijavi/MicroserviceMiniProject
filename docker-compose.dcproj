@@ -2,13 +2,11 @@
 <Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
-    <ProjectGuid>fd8b9da8-90c2-4261-b898-0311c2d68952</ProjectGuid>
-    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/products</DockerServiceUrl>
-    <DockerServiceName>productapi</DockerServiceName>
-  </PropertyGroup>
-  <PropertyGroup>
     <DockerTargetOS>Windows</DockerTargetOS>
+    <ProjectGuid>bf06ea0d-5792-426b-9a27-ff5b4c76cad7</ProjectGuid>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerServiceUrl>{Scheme}://{ServiceIPAddress}{ServicePort}/api/customers</DockerServiceUrl>
+    <DockerServiceName>customerapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
