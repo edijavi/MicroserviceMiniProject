@@ -14,7 +14,6 @@ namespace OrderApi
     public class Startup
     {
         Uri productServiceBaseUrl = new Uri("http://localhost:5001/api/products/");
-        Uri customerServiceBaseUrl = new Uri("http://localhost:5001/api/customers/");
         // string cloudAMQPConnectionString = "host=hare.rmq.cloudamqp.com;virtualHost=npaprqop;username=npaprqop;password=TnP46q2gwIcrbfebFLHTk1PGI8j3-vbA";
         string localhostRabbitMQConnectionString = "host=localhost;username=admin;password=admin";
 
@@ -40,10 +39,6 @@ namespace OrderApi
             // Register product service gateway for dependency injection
             services.AddSingleton<IServiceGateway<Product>>(new
                 ProductServiceGateway(productServiceBaseUrl));
-
-            // Register customer service gateway for dependency injection
-            services.AddSingleton<IServiceGateway<Customer>>(new
-                CustomerServiceGateway(customerServiceBaseUrl));
 
             // Register MessagePublisher (a messaging gateway) for dependency injection
             services.AddSingleton<IMessagePublisher>(new
