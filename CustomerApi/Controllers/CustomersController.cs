@@ -1,39 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using OrderApi.Data;
-using SharedModels;
-using RestSharp;
-using EasyNetQ;
+using CustomerApi.Data;
 using CustomerApi.Infrastructure;
-using System.Web.Mvc;
+using SharedModels;
 
 namespace CustomerApi.Controllers
 {
-    [Route("api/customer")]
+    [Route("api/customers")]
     public class CustomersController : Controller
     {
-        
-		IRepository<Order> repository;
+        IRepository<Customer> repository;
         IServiceGateway<Product> productServiceGateway;
         IMessagePublisher messagePublisher;
 
-		public OrdersController(IRepository<Order> repos, IServiceGateway<Product> gateway, IMessagePublisher publisher)
+        public CustomersController(IRepository<Customer> repos, IServiceGateway<Product> gateway, IMessagePublisher publisher)
         {
             repository = repos;
-			productServiceGateway = gateway;
+            productServiceGateway = gateway;
             messagePublisher = publisher;
         }
-
-        // GET: api/orders
+        // GET api/customers
         [HttpGet]
-        public IEnumerable<Order> Get()
+        public IEnumerable<Customer> Get()
         {
             return repository.GetAll();
         }
 
-        // GET api/products/5
-        [HttpGet("{id}", Name = "GetOrder")]
+        // GET api/customers/5
+        [HttpGet("{id}", Name = "GetCustomer")]
         public IActionResult Get(int id)
         {
             var item = repository.Get(id);
@@ -44,52 +41,10 @@ namespace CustomerApi.Controllers
             return new ObjectResult(item);
         }
 
-        // POST api/orders
+        // POST api/customers
         [HttpPost]
-        public IActionResult Post([FromBody]Order order)
+        public void Post([FromBody] string value)
         {
-            if (order == null)
-            {
-                return BadRequest();
-            }
-
-            // Get the Product from Product API
-			var orderedProduct = productServiceGateway.Get(order.ProductId);
-
-            if (order.Quantity <= orderedProduct.ItemsInStock - orderedProduct.ItemsReserved)
-            {
-                /*
-				// reduce the number of items in stock for the ordered product,
-                // and create a new order.
-                orderedProduct.ItemsReserved += order.Quantity;
-                var updateRequest = new RestRequest(orderedProduct.Id.ToString(), Method.PUT);
-                updateRequest.AddJsonBody(orderedProduct);
-                var updateResponse = c.Execute(updateRequest);
-				*/
-			
-				try
-					{
-						// Publish OrderStatusChangedMessage. If this operation
-						// fails, the order will not be created
-						messagePublisher.PublishOrderStatusChangedMessage(order.ProductId, 
-							order.Quantity, "orderCompleted");
-
-						// Create order.
-						order.Status = Order.OrderStatus.completed;
-						var newOrder = repository.Add(order);
-						return CreatedAtRoute("GetOrder", new { id = newOrder.Id }, newOrder);
-					}
-					catch
-					{
-						return StatusCode(500, "An error happened. Try again.");
-					}				
-			}
-			else
-			{
-				// If the order could not be created, "return no content".
-				return StatusCode(500, "Not enough items in stock.");
-			}
         }
-
     }
 }

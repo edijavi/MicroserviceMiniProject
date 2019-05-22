@@ -1,7 +1,7 @@
 ﻿using System;
 using SharedModels;
 
-namespace OrderApi.Infrastructure
+namespace CustomerApi.Infrastructure
 {
     public interface IServiceGateway<T>
     {

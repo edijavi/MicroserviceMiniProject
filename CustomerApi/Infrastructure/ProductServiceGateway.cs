@@ -2,7 +2,8 @@
 using RestSharp;
 using SharedModels;
 
-namespace OrderApi.Infrastructure
+
+namespace CustomerApi.Infrastructure
 {
     public class ProductServiceGateway : IServiceGateway<Product>
     {

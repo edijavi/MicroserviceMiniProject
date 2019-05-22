@@ -9,10 +9,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.2105168" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.7.9" />
     <PackageReference Include="RestSharp" Version="106.6.9" />
     <PackageReference Include="ZXing.Net" Version="0.16.4" />
-    <PackageReference Include="EasyNetQ" Version="3.4.4" />
+    <PackageReference Include="EasyNetQ" Version="3.5.0" />
   </ItemGroup>
 
   <ItemGroup>

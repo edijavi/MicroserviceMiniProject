@@ -1,5 +1,5 @@
 ﻿using System;
-namespace OrderApi.Infrastructure
+namespace CustomerApi.Infrastructure
 {
     public interface IMessagePublisher
     {

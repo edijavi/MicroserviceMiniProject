@@ -2,7 +2,7 @@
 using EasyNetQ;
 using SharedModels;
 
-namespace OrderApi.Infrastructure
+namespace CustomerApi.Infrastructure
 {
     public class MessagePublisher : IMessagePublisher, IDisposable
     {
