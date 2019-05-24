@@ -2,19 +2,19 @@ version: '3.4'
 
 services:
   productapi:
-    image: edijavi/productapi
+    image: ${DOCKER_REGISTRY-}edijavi/productapi
     build:
       context: .
       dockerfile: ProductApi\Dockerfile
 
   orderapi:
-    image: edijavi/orderapi
+    image: ${DOCKER_REGISTRY-}edijavi/orderapi
     build:
       context: .
       dockerfile: OrderApi\Dockerfile
 
   customerapi:
-    image: edijavi/customerapi
+    image: ${DOCKER_REGISTRY-}edijavi/customerapi
     build:
       context: .
       dockerfile: CustomerApi\Dockerfile

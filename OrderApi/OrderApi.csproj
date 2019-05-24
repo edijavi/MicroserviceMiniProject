@@ -18,7 +18,4 @@
   <ItemGroup>
     <Compile Remove="Controllers\ValuesController.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SharedModels\SharedModels.csproj" />
-  </ItemGroup>
 </Project>

@@ -6,8 +6,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductApi", "ProductApi\Pr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderApi", "OrderApi\OrderApi.csproj", "{49B688E9-31B4-4F04-96FF-34032E70CF54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedModels", "SharedModels\SharedModels.csproj", "{B2C30F68-56FB-4115-8D6E-76208D028B5F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerApi", "CustomerApi\CustomerApi.csproj", "{6EF8AAC7-3E18-4F14-977C-FEF7241A894D}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{02C538B1-01B7-48DD-82A0-0256CADE6609}"
@@ -26,10 +24,6 @@ Global
 		{49B688E9-31B4-4F04-96FF-34032E70CF54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49B688E9-31B4-4F04-96FF-34032E70CF54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49B688E9-31B4-4F04-96FF-34032E70CF54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2C30F68-56FB-4115-8D6E-76208D028B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2C30F68-56FB-4115-8D6E-76208D028B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2C30F68-56FB-4115-8D6E-76208D028B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2C30F68-56FB-4115-8D6E-76208D028B5F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6EF8AAC7-3E18-4F14-977C-FEF7241A894D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6EF8AAC7-3E18-4F14-977C-FEF7241A894D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EF8AAC7-3E18-4F14-977C-FEF7241A894D}.Release|Any CPU.ActiveCfg = Release|Any CPU
