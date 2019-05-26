@@ -9,9 +9,9 @@ FROM microsoft/dotnet:2.2-sdk-nanoserver-1803 AS build
 WORKDIR /src
 COPY CustomerApi/CustomerApi.csproj CustomerApi/
 COPY SharedModels/SharedModels.csproj SharedModels/
+WORKDIR /src/CustomerApi
 RUN dotnet restore CustomerApi/CustomerApi.csproj
 COPY . .
-WORKDIR /src/CustomerApi
 RUN dotnet build CustomerApi.csproj -c Release -o /app
 
 FROM build AS publish

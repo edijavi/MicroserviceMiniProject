@@ -9,6 +9,7 @@ FROM microsoft/dotnet:2.2-sdk-nanoserver-1803 AS build
 WORKDIR /src
 COPY OrderApi/OrderApi.csproj OrderApi/
 COPY SharedModels/SharedModels.csproj SharedModels/
+WORKDIR /src/OrderApi
 RUN dotnet restore OrderApi/OrderApi.csproj
 COPY . .
 WORKDIR /src/OrderApi
