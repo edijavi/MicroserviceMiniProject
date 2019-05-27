@@ -14,7 +14,7 @@
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
     "IIS Express": {
-      "commandName": "IISExpress",
+      "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/products",
       "environmentVariables": {
@@ -34,6 +34,11 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/products"
+    },
+    "Docker (1)": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/{Scheme}://{ServiceHost}:{ServicePort}/api/products"
     }
   }
 }
