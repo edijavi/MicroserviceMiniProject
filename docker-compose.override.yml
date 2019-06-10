@@ -5,21 +5,14 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 51448:80
-
+      - "80"
   orderapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 51450:80
-
+      - "80"
   customerapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - 51452:80
-
-networks:
-  default:
-    external:
-      name: nat
+      - "80"

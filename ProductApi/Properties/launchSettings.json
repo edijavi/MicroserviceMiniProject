@@ -38,7 +38,9 @@
     "Docker (1)": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/{Scheme}://{ServiceHost}:{ServicePort}/api/products"
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/{Scheme}://{ServiceHost}:{ServicePort}/api/products",
+      "environmentVariables": {},
+      "httpPort": 51448
     }
   }
 }

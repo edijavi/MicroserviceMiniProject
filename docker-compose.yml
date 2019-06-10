@@ -5,16 +5,20 @@ services:
     image: ${DOCKER_REGISTRY-}edijavi/productapi
     build:
       context: .
-      dockerfile: ProductApi\Dockerfile
-
+      dockerfile: ProductApi/Dockerfile
+    ports:
+      - "51448:80"
   orderapi:
     image: ${DOCKER_REGISTRY-}edijavi/orderapi
     build:
       context: .
-      dockerfile: OrderApi\Dockerfile
-
+      dockerfile: OrderApi/Dockerfile
+    ports:
+      - "51450:80"
   customerapi:
     image: ${DOCKER_REGISTRY-}edijavi/customerapi
     build:
       context: .
-      dockerfile: CustomerApi\Dockerfile
+      dockerfile: CustomerApi/Dockerfile
+    ports:
+      - "51452:80"
