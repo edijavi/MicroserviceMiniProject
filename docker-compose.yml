@@ -2,21 +2,21 @@ version: '3.4'
 
 services:
   productapi:
-    image: ${DOCKER_REGISTRY-}edijavi/productapi
+    image: ${DOCKER_REGISTRY-}productapi
     build:
       context: .
       dockerfile: ProductApi/Dockerfile
     ports:
       - "51448:80"
   orderapi:
-    image: ${DOCKER_REGISTRY-}edijavi/orderapi
+    image: ${DOCKER_REGISTRY-}orderapi
     build:
       context: .
       dockerfile: OrderApi/Dockerfile
     ports:
       - "51450:80"
   customerapi:
-    image: ${DOCKER_REGISTRY-}edijavi/customerapi
+    image: ${DOCKER_REGISTRY-}customerapi
     build:
       context: .
       dockerfile: CustomerApi/Dockerfile
