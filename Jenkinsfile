@@ -3,9 +3,9 @@ node('docker') {
     stage 'Checkout'
         checkout scm
     stage 'Build & UnitTest'
-        sh "docker build -t ${DOCKER_REGISTRY-}productapi -f Dockerfile ."
-		sh "docker build -t ${DOCKER_REGISTRY-}orderapi -f Dockerfile ."
-        sh "docker build -t ${DOCKER_REGISTRY-}customerapi -f Dockerfile ."
+        sh "docker build -t productapi -f Dockerfile ."
+		sh "docker build -t orderapi -f Dockerfile ."
+        sh "docker build -t customerapi -f Dockerfile ."
   
     stage 'Integration Test'
         sh "docker-compose -f docker-compose.yml up --force-recreate --abort-on-container-exit"
